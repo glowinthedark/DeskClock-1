@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings">
+    <PreferenceCategory
+        android:title="@string/clock_settings">
+        <com.android.deskclock.settings.SimpleMenuPreference
+            android:defaultValue="@string/default_clock_style"
+            android:dialogTitle="@string/clock_style"
+            android:entries="@array/clock_style_entries"
+            android:entryValues="@array/clock_style_values"
+            android:key="clock_style"
+            android:title="@string/clock_style" />
+
+        <SwitchPreferenceCompat
+            android:key="display_clock_seconds"
+            android:title="@string/display_clock_seconds_pref" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="automatic_home_clock"
+            android:summary="@string/automatic_home_clock_summary"
+            android:title="@string/automatic_home_clock" />
+
+        <ListPreference
+            android:dialogTitle="@string/home_time_zone_title"
+            android:entries="@array/timezone_labels"
+            android:entryValues="@array/timezone_values"
+            android:key="home_time_zone"
+            android:title="@string/home_time_zone" />
+
+        <Preference
+            android:key="date_time"
+            android:title="@string/open_date_settings" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/alarm_settings">
+        <ListPreference
+            android:defaultValue="10"
+            android:dialogTitle="@string/auto_silence_title"
+            android:entries="@array/auto_silence_entries"
+            android:entryValues="@array/auto_silence_values"
+            android:key="auto_silence"
+            android:title="@string/auto_silence_title" />
+
+        <ListPreference
+            android:defaultValue="10"
+            android:dialogTitle="@string/snooze_duration_title"
+            android:entries="@array/snooze_duration_entries"
+            android:entryValues="@array/snooze_duration_values"
+            android:key="snooze_duration"
+            android:title="@string/snooze_duration_title" />
+
+        <com.android.deskclock.settings.AlarmVolumePreference
+            android:key="volume_setting"
+            android:layout="@layout/alarm_volume_preference"
+            android:title="@string/alarm_volume_title" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/crescendo_duration_title"
+            android:entries="@array/crescendo_entries"
+            android:entryValues="@array/crescendo_values"
+            android:key="alarm_crescendo_duration"
+            android:title="@string/crescendo_duration_title" />
+
+        <com.android.deskclock.settings.SimpleMenuPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/volume_button_setting_title"
+            android:entries="@array/volume_button_setting_entries"
+            android:entryValues="@array/volume_button_setting_values"
+            android:key="volume_button_setting"
+            android:title="@string/volume_button_setting_title" />
+
+        <com.android.deskclock.settings.SimpleMenuPreference
+            android:dialogTitle="@string/week_start_title"
+            android:entries="@array/week_start_entries"
+            android:entryValues="@array/week_start_values"
+            android:key="week_start"
+            android:title="@string/week_start_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/timer_settings">
+        <Preference
+            android:key="timer_ringtone"
+            android:title="@string/timer_sound" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/crescendo_duration_title"
+            android:entries="@array/crescendo_entries"
+            android:entryValues="@array/crescendo_values"
+            android:key="timer_crescendo_duration"
+            android:title="@string/crescendo_duration_title" />
+
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="timer_vibrate"
+            android:title="@string/timer_vibrate_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Screensaver customizations">
+
+        <SeekBarPreference
+            android:defaultValue="100"
+            android:min="218"
+            android:max="300"
+            android:key="lk_font_size_land"
+            android:title="Screensaver landscape font size"
+            android:summary="Size of desk clock in landscape mode"
+            />
+
+        <SeekBarPreference
+            android:defaultValue="116"
+            android:min="10"
+            android:max="120"
+            android:key="lk_font_size_portrait"
+            android:title="Screensaver portrait font size"
+            android:summary="Size of desk clock in portrait mode"
+            />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="screensaver_night_mode"
+            android:summary="@string/night_mode_summary"
+            android:title="@string/night_mode_title" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="lk_screensaver_always_on"
+            android:summary="@string/lk_screensaver_always_on_summary"
+            android:title="@string/lk_screensaver_always_on" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="lk_screensaver_use_custom_font"
+            android:summary="@string/lk_screensaver_use_custom_font_summary"
+            android:title="@string/lk_screensaver_use_custom_font" />
+
+        <ListPreference
+            android:key="lk_screensaver_custom_font"
+            android:title="@string/lk_screensaver_custom_font"
+            android:summary="@string/lk_screensaver_custom_font_summary"
+            android:entries="@array/lk_screensaver_custom_font_entries"
+            android:entryValues="@array/lk_screensaver_custom_font_entries"
+            android:defaultValue="@string/lk_screensaver_custom_font_default"
+            />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
