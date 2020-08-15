@@ -12,8 +12,8 @@
      limitations under the License.
 -->
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings">
     <PreferenceCategory
         android:title="@string/clock_settings">
@@ -121,19 +121,23 @@
         <SeekBarPreference
             android:defaultValue="100"
             android:min="218"
-            android:max="300"
+            android:max="500"
+            app:seekBarIncrement="1"
             android:key="lk_font_size_land"
             android:title="Screensaver landscape font size"
             android:summary="Size of desk clock in landscape mode"
+            app:showSeekBarValue="true"
             />
 
         <SeekBarPreference
             android:defaultValue="116"
             android:min="10"
-            android:max="120"
+            android:max="250"
+            app:seekBarIncrement="1"
             android:key="lk_font_size_portrait"
             android:title="Screensaver portrait font size"
             android:summary="Size of desk clock in portrait mode"
+            app:showSeekBarValue="true"
             />
 
         <CheckBoxPreference
@@ -160,7 +164,7 @@
             android:summary="@string/lk_screensaver_custom_font_summary"
             android:entries="@array/lk_screensaver_custom_font_entries"
             android:entryValues="@array/lk_screensaver_custom_font_entries"
-            android:defaultValue="@string/lk_screensaver_custom_font_default"
+            android:defaultValue="myriad_pro_bold_condensed.ttf"
             />
 
     </PreferenceCategory>

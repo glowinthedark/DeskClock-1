@@ -23,9 +23,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.Window;
@@ -37,6 +39,7 @@ import com.android.deskclock.uidata.UiDataModel;
 
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
 import static android.os.BatteryManager.EXTRA_PLUGGED;
+import static com.android.deskclock.Screensaver.setDigitalClockFontAndSize;
 
 public class ScreensaverActivity extends BaseActivity {
 
@@ -109,7 +112,10 @@ public class ScreensaverActivity extends BaseActivity {
         mContentView = findViewById(R.id.saver_container);
         mMainClockView = mContentView.findViewById(R.id.main_clock);
 
-        final View digitalClock = mMainClockView.findViewById(R.id.digital_clock);
+        final TextClock digitalClock = mMainClockView.findViewById(R.id.digital_clock);
+
+        setDigitalClockFontAndSize(digitalClock);
+
         final AnalogClock analogClock =
                 (AnalogClock) mMainClockView.findViewById(R.id.analog_clock);
 
@@ -189,6 +195,7 @@ public class ScreensaverActivity extends BaseActivity {
     @Override
     public void onUserInteraction() {
         // We want the screen saver to exit upon user interaction.
+        restoreLockTimeout();
         finish();
     }
 
@@ -251,7 +258,18 @@ public class ScreensaverActivity extends BaseActivity {
             // When the user interacts with the screen, the navigation bar reappears
             if ((visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
                 // We want the screen saver to exit upon user interaction.
+                restoreLockTimeout();
                 finish();
+            }
+        }
+    }
+
+
+    private void restoreLockTimeout() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Settings.System.canWrite(getApplicationContext())) {
+                Settings.System.putInt(getContentResolver(),
+                        Settings.System.SCREEN_OFF_TIMEOUT, DeskClock.lastSaveAutoLockTimeout);
             }
         }
     }

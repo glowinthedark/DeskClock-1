@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lk_screensaver_custom_font_entries">
+        <item>"default"</item>
+        <item>"default-bold"</item>
+        <item>"serif"</item>
+        <item>"sans-serif"</item>
+        <item>"monospace"</item>
+        <item>frutiger_bold_condensed.ttf</item>
+        <item>myriad_pro_bold_condensed.ttf</item>
+        <item>roboto_condensed_bold.ttf</item>
+        <item>cronos_pro_semibold.ttf</item>
+    </string-array>
+</resources>

@@ -23,20 +23,27 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
 import android.service.dreams.DreamService;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.TextClock;
 
+import androidx.collection.ArrayMap;
+
 import com.android.deskclock.data.DataModel;
 import com.android.deskclock.uidata.UiDataModel;
+
+import java.util.Map;
 
 public final class Screensaver extends DreamService {
 
     private static final LogUtils.Logger LOGGER = new LogUtils.Logger("Screensaver");
+    private static Typeface clockFont;
 
     private final OnPreDrawListener mStartPositionUpdater = new StartPositionUpdater();
     private MoveScreensaverRunnable mPositionUpdater;
@@ -48,6 +55,16 @@ public final class Screensaver extends DreamService {
     private View mMainClockView;
     private TextClock mDigitalClock;
     private AnalogClock mAnalogClock;
+
+    public static final Map<String, Typeface> builtinFonts = new ArrayMap<>();
+
+    static {
+        builtinFonts.put("default", Typeface.DEFAULT);
+        builtinFonts.put("default-bold", Typeface.DEFAULT_BOLD);
+        builtinFonts.put("serif", Typeface.SERIF);
+        builtinFonts.put("sans-serif", Typeface.SANS_SERIF);
+        builtinFonts.put("monospace", Typeface.MONOSPACE);
+    }
 
     /* Register ContentObserver to see alarm changes for pre-L */
     private final ContentObserver mSettingsContentObserver =
@@ -97,6 +114,10 @@ public final class Screensaver extends DreamService {
         mContentView = findViewById(R.id.saver_container);
         mMainClockView = mContentView.findViewById(R.id.main_clock);
         mDigitalClock = (TextClock) mMainClockView.findViewById(R.id.digital_clock);
+
+        setDigitalClockFontAndSize(mDigitalClock);
+
+
         mAnalogClock = (AnalogClock) mMainClockView.findViewById(R.id.analog_clock);
 
         setClockStyle();
@@ -134,6 +155,42 @@ public final class Screensaver extends DreamService {
         startPositionUpdater();
         UiDataModel.getUiDataModel().addMidnightCallback(mMidnightUpdater, 100);
     }
+
+
+
+    public static void setDigitalClockFontAndSize(TextClock mDigitalClock) {
+
+//PreferenceManager.getDefaultSharedPreferencesName(mDigitalClock.getContext())
+//        SharedPreferences prefs = getPrefsHack(mDigitalClock.getContext());
+        if (DataModel.getDataModel().isScreensaverCustomFont()) {
+            String fontName = DataModel.getDataModel().getScreensaverCustomFont();
+
+            if (builtinFonts.keySet().contains(fontName)) {
+                clockFont = builtinFonts.get(fontName);
+            } else {
+                clockFont = Typeface.createFromAsset(mDigitalClock.getContext().getAssets(), "fonts/" + fontName);
+            }
+
+            mDigitalClock.setTypeface(clockFont);
+        }
+        int clockFontSize = Utils.isLandscape(mDigitalClock.getContext())
+                                    ? DataModel.getDataModel().getScreensaverLandscapeFontSize()
+                                    : DataModel.getDataModel().getScreensaverPortraitFontSize();
+
+        mDigitalClock.setTextSize(TypedValue.COMPLEX_UNIT_SP, clockFontSize);
+    }
+
+//    private static SharedPreferences getPrefsHack(Context ctx) {
+//        final Context storageContext;
+//        if (Utils.isNOrLater()) {
+//            String name = PreferenceManager.getDefaultSharedPreferencesName(ctx);
+//            storageContext = ctx.createDeviceProtectedStorageContext();
+//            storageContext.moveSharedPreferencesFrom(ctx, name);
+//        } else {
+//            storageContext = ctx;
+//        }
+//        return PreferenceManager.getDefaultSharedPreferences(storageContext);
+//    }
 
     @Override
     public void onDetachedFromWindow() {

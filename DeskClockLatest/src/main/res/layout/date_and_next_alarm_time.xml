@@ -19,6 +19,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:visibility="gone"
     android:gravity="center">
 
     <TextView
@@ -38,7 +39,7 @@
         android:layout_marginStart="@dimen/alarm_icon_padding"
         android:ellipsize="none"
         android:includeFontPadding="false"
-        android:maxLines="1"
+        android:singleLine="true"
         android:text="@string/clock_emoji" />
 
     <TextView

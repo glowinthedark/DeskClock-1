@@ -16,4 +16,5 @@
 
 <resources>
     <dimen name="main_clock_font_size">88sp</dimen>
+    <dimen name="main_clock_font_size_lk_big">176sp</dimen>
 </resources>

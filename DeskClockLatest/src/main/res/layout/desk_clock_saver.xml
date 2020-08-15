@@ -27,10 +27,10 @@
         android:id="@+id/main_clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/screensaver_margin"
-        android:layout_marginEnd="@dimen/screensaver_margin"
-        android:layout_marginStart="@dimen/screensaver_margin"
-        android:layout_marginTop="@dimen/time_margin_top"
+        android:layout_marginBottom="0sp"
+        android:layout_marginEnd="0sp"
+        android:layout_marginStart="0sp"
+        android:layout_marginTop="0sp"
         android:orientation="vertical">
 
         <com.android.deskclock.AnalogClock
@@ -38,11 +38,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/bottom_text_spacing_analog" />
+            android:layout_marginBottom="0sp" />
 
+<!--
+            style="@style/big_thin"
+
+-->
         <TextClock
             android:id="@+id/digital_clock"
-            style="@style/big_thin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,7 +54,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/main_clock_font_size" />
+            android:textSize="@dimen/main_clock_font_size_lk_big" />
 
         <include layout="@layout/date_and_next_alarm_time" />
 

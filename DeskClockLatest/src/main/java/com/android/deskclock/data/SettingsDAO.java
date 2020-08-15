@@ -65,6 +65,10 @@ final class SettingsDAO {
     /** Key to a preference that indicates whether restore (of backup and restore) has completed. */
     private static final String KEY_RESTORE_BACKUP_FINISHED = "restore_finished";
 
+    public static final int SCREENSAVER_LANDSCAPE_DEFAULT_FONT_SIZE = 150;
+    public static final int SCREENSAVER_PORTRAIT_DEFAULT_FONT_SIZE = 95;
+
+
     private SettingsDAO() {}
 
     /**
@@ -240,6 +244,26 @@ final class SettingsDAO {
     static long getTimerCrescendoDuration(SharedPreferences prefs) {
         final String crescendoSeconds = prefs.getString(SettingsActivity.KEY_TIMER_CRESCENDO, "0");
         return Integer.parseInt(crescendoSeconds) * DateUtils.SECOND_IN_MILLIS;
+    }
+
+    static int getLandscapeFontSize(Context context, SharedPreferences prefs) {
+        return prefs.getInt(SettingsActivity.KEY_LK_FONT_SIZE_LAND, SCREENSAVER_LANDSCAPE_DEFAULT_FONT_SIZE);
+    }
+
+    static int getPortraitFontSize(Context context, SharedPreferences prefs) {
+        return prefs.getInt(SettingsActivity.KEY_LK_FONT_SIZE_PORTRAIT, SCREENSAVER_PORTRAIT_DEFAULT_FONT_SIZE);
+    }
+
+    static boolean isScreensaverAlwaysOn(Context context, SharedPreferences prefs) {
+        return prefs.getBoolean(SettingsActivity.KEY_LK_SCREENSAVER_ALWAYS_ON, true);
+    }
+
+    static boolean isScreensaverCustomFont(Context context, SharedPreferences prefs) {
+        return prefs.getBoolean(SettingsActivity.KEY_LK_SCREENSAVER_USE_CUSTOM_FONT, true);
+    }
+
+    static String getScreensaverCustomFont(Context context, SharedPreferences prefs) {
+        return prefs.getString(SettingsActivity.KEY_LK_SCREENSAVER_CUSTOM_FONT, "serif");
     }
 
     /**

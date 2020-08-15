@@ -172,4 +172,25 @@ final class SettingsModel {
     TimeZones getTimeZones() {
         return SettingsDAO.getTimeZones(mContext, mTimeModel.currentTimeMillis());
     }
+
+    int getScreensaverLandscapeFontSize() {
+        return SettingsDAO.getLandscapeFontSize(mContext, mPrefs);
+    }
+
+    int getScreensaverPortraitFontSize() {
+        return SettingsDAO.getPortraitFontSize(mContext, mPrefs);
+    }
+
+    boolean isScreensaverAlwaysOn() {
+        return SettingsDAO.isScreensaverAlwaysOn(mContext, mPrefs);
+    }
+
+    boolean isScreensaverCustomFont() {
+        return SettingsDAO.isScreensaverCustomFont(mContext, mPrefs);
+    }
+
+    String getScreensaverCustomFont() {
+        return SettingsDAO.getScreensaverCustomFont(mContext, mPrefs);
+    }
+
 }

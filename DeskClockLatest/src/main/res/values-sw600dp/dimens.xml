@@ -27,6 +27,7 @@
     <dimen name="bottom_text_spacing_analog_small">10dp</dimen>
 
     <dimen name="main_clock_font_size">125sp</dimen>
+    <dimen name="main_clock_font_size_lk_big">250sp</dimen>
     <dimen name="big_font_size">115sp</dimen>
     <dimen name="label_font_size">18sp</dimen>
     <dimen name="alarm_label_size">18sp</dimen>

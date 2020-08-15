@@ -62,6 +62,13 @@ public final class SettingsActivity extends BaseActivity {
     public static final String KEY_VOLUME_BUTTONS = "volume_button_setting";
     public static final String KEY_WEEK_START = "week_start";
 
+    // always-on screensaver
+    public static final String KEY_LK_FONT_SIZE_LAND = "lk_font_size_land";
+    public static final String KEY_LK_FONT_SIZE_PORTRAIT = "lk_font_size_portrait";
+    public static final String KEY_LK_SCREENSAVER_ALWAYS_ON = "lk_screensaver_always_on";
+    public static final String KEY_LK_SCREENSAVER_USE_CUSTOM_FONT = "lk_screensaver_use_custom_font";
+    public static final String KEY_LK_SCREENSAVER_CUSTOM_FONT = "lk_screensaver_custom_font";
+
     public static final String DEFAULT_VOLUME_BEHAVIOR = "0";
     public static final String VOLUME_BEHAVIOR_SNOOZE = "1";
     public static final String VOLUME_BEHAVIOR_DISMISS = "2";

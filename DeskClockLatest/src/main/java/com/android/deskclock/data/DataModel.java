@@ -1039,6 +1039,29 @@ public final class DataModel {
         mSettingsModel.setRestoreBackupFinished(finished);
     }
 
+
+    public int getScreensaverLandscapeFontSize() {
+        return mSettingsModel.getScreensaverLandscapeFontSize();
+    }
+
+    public int getScreensaverPortraitFontSize() {
+        return mSettingsModel.getScreensaverPortraitFontSize();
+    }
+
+    public boolean isScreensaverAlwaysOn() {
+        return mSettingsModel.isScreensaverAlwaysOn();
+    }
+
+
+    public boolean isScreensaverCustomFont() {
+        return mSettingsModel.isScreensaverCustomFont();
+    }
+
+    public String getScreensaverCustomFont() {
+        return mSettingsModel.getScreensaverCustomFont();
+    }
+
+
     /**
      * @return a description of the time zones available for selection
      */
