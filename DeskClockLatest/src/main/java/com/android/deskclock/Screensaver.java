@@ -160,8 +160,6 @@ public final class Screensaver extends DreamService {
 
     public static void setDigitalClockFontAndSize(TextClock mDigitalClock) {
 
-//PreferenceManager.getDefaultSharedPreferencesName(mDigitalClock.getContext())
-//        SharedPreferences prefs = getPrefsHack(mDigitalClock.getContext());
         if (DataModel.getDataModel().isScreensaverCustomFont()) {
             String fontName = DataModel.getDataModel().getScreensaverCustomFont();
 
@@ -179,18 +177,6 @@ public final class Screensaver extends DreamService {
 
         mDigitalClock.setTextSize(TypedValue.COMPLEX_UNIT_SP, clockFontSize);
     }
-
-//    private static SharedPreferences getPrefsHack(Context ctx) {
-//        final Context storageContext;
-//        if (Utils.isNOrLater()) {
-//            String name = PreferenceManager.getDefaultSharedPreferencesName(ctx);
-//            storageContext = ctx.createDeviceProtectedStorageContext();
-//            storageContext.moveSharedPreferencesFrom(ctx, name);
-//        } else {
-//            storageContext = ctx;
-//        }
-//        return PreferenceManager.getDefaultSharedPreferences(storageContext);
-//    }
 
     @Override
     public void onDetachedFromWindow() {
